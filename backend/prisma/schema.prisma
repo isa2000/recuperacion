@@ -11,13 +11,12 @@ datasource db {
   // directUrl = env("DIRECT_URL")
 }
 
-
 model Bus {
-  id      Int      @id @default(autoincrement()) @map("ID_CLIENTE")
-  code         String
-  route           String  
-  source String
-  destiny         String?
-  deleted           Boolean  @default(false)
-  reason            String
+  id      Int     @id @default(autoincrement())
+  code    String
+  route   String
+  source  String
+  destiny String?
+  deleted Boolean @default(false)
+  reason  String? 
 }

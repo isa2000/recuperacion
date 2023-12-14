@@ -10,7 +10,7 @@ import { FormatDatePipe } from './pipes/format-date.pipe';
 
 import { InterfazComponent } from './pages/interfaz/interfaz.component';
 
-export const url = 'http://localhost:8080/api/v1/';
+export const url = 'http://localhost:3000/api/v1/';
 
 @NgModule({
   declarations: [

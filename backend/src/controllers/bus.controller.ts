@@ -38,6 +38,7 @@ const obtenerBus = async (req: Request, res: Response) => {
         const bus = await prisma.bus.findFirst({
             where: {
                 code: code,
+                deleted: false
             },
         });
         res.status(200).json(bus);

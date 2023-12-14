@@ -13,22 +13,17 @@ export class ClienteService {
   constructor(private http: HttpClient) { }
 
   ingresarCliente(body:any): Observable<ClienteResponse>{
-    return this.http.post<ClienteResponse>(`${url}monolitico/crear/cliente`,body);
+    return this.http.post<ClienteResponse>(`${url}crear/bus`,body);
   }
 
-  obtenerClientes():Observable<Cliente>{
-    return this.http.get<Cliente>(`${url}monolitico/ver/clientes`)
+  obtenerClientes(body:any):Observable<any>{
+    return this.http.get<any>(`${url}ver/bus`,body)
   }
 
-  obtenerCliente(id:number):Observable<Cliente>{
-    return this.http.get<Cliente>(`${url}monolitico/ver/cliente/${id}`)
+
+
+  eliminarCliente(body:any):Observable<any>{
+    return this.http.delete<any>(`${url}eliminar/bus`,body)
   }
 
-  eliminarCliente(id:number):Observable<ClienteResponse>{
-    return this.http.delete<ClienteResponse>(`${url}monolitico/eliminar/cliente/${id}`)
-  }
-
-  actualizarCliente(id:number, body:any):Observable<ClienteResponse>{
-    return this.http.patch<ClienteResponse>(`${url}monolitico/actualizar/cliente/${id}`, body)
-  }
 }

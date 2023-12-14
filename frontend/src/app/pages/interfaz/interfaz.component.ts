@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { catchError, tap } from 'rxjs';
+import { ClienteService } from 'src/app/services/cliente.service';
 
 @Component({
   selector: 'app-interfaz',
@@ -7,17 +9,41 @@ import { Component } from '@angular/core';
 })
 export class InterfazComponent {
 
-  codigo: string = '';
-  datos: any;
+  code: string = '';
+  bus: any = {};
+  eliminado:any = {}
 
-  // constructor(private servicioHttp: TuServicioHttp) { } // Reemplaza 'TuServicioHttp'
+constructor(private buss: ClienteService){
 
-  // buscarDatos() {
-  //   this.servicioHttp.obtenerDatos(this.codigo).subscribe((res: any) => {
-  //     this.datos = res; // Aquí asumimos que 'res' contiene los datos obtenidos desde el servidor
-  //   }, (error) => {
-  //     console.error('Error al buscar datos:', error);
-  //   });
-  // }
+}
+buscar(){
 
+  this.buss.obtenerClientes(this.bus).pipe(
+    tap(data=>{
+      this.bus = data
+    }),catchError(e =>{
+
+      throw e
+    }
+
+    )
+  ).subscribe()
+}
+eliminar(){
+  const id = parseInt(this.bus.id)
+  this.bus.id = id
+  console.log(this.bus);
+  
+  
+  this.buss.eliminarCliente(this.bus).pipe(
+    tap(data =>{
+
+      this.eliminado = data.data
+    }), 
+    catchError(e=>{
+
+      throw e
+    })
+  ).subscribe()
+}
 }

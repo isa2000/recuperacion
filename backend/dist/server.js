@@ -16,9 +16,7 @@ exports.prisma = void 0;
 // import http from 'http';
 const express_1 = __importDefault(require("express"));
 const client_1 = require("@prisma/client");
-const pedido_route_1 = __importDefault(require("./src/routes/pedido.route"));
-const producto_route_1 = __importDefault(require("./src/routes/producto.route"));
-const cliente_route_1 = __importDefault(require("./src/routes/cliente.route"));
+const bus_route_1 = __importDefault(require("./src/routes/bus.route"));
 const cors_1 = __importDefault(require("cors"));
 // import path from 'path';
 exports.prisma = new client_1.PrismaClient();
@@ -29,13 +27,7 @@ app.use((0, cors_1.default)({ origin: 'http://localhost:4200' }));
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         app.use(express_1.default.json());
-        // app.set('views', path.join(__dirname, 'views'));
-        // app.set('view engine', 'hbs');
-        // app.use(express.static(path.join(__dirname, 'public')));
-        // Register API routes
-        app.use("/api/v1/", pedido_route_1.default);
-        app.use("/api/v1/", cliente_route_1.default);
-        app.use("/api/v1/", producto_route_1.default);
+        app.use("/api/v1/", bus_route_1.default);
         // app.use('/', ServerViews);
         // Catch unregistered routes
         app.all("*", (req, res) => {
