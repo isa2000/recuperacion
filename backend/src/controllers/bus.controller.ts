@@ -1,6 +1,9 @@
 import { prisma } from '../../server'
 import { Request, Response } from "express";
 
+
+//estaesunejemplodepractica
+
 const crearBus = async (req: Request, res: Response) => {
     try {
         const { code,
