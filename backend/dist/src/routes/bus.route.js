@@ -7,7 +7,7 @@ const express_1 = __importDefault(require("express"));
 const bus_controller_1 = __importDefault(require("../controllers/bus.controller"));
 const router = express_1.default.Router();
 router.post("/crear/flight", bus_controller_1.default.crearBus);
-// router.get("/ver/bus",BusController.obtenerBus);
+router.get("/ver/flight", bus_controller_1.default.obtenerBus);
 // router.get("/ver/cliente/:id",BusController.obtenerCliente);
 // router.patch("/actualizar/cliente/:id",BusController.actualizarCliente);
 router.delete("/eliminar/flight", bus_controller_1.default.eliminarBus);

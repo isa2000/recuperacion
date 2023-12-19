@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { catchError, tap } from 'rxjs';
 import { IFlight } from 'src/app/interfaces/IFlight';
 import { ClienteService } from 'src/app/services/cliente.service';
@@ -10,11 +10,11 @@ import { ClienteService } from 'src/app/services/cliente.service';
   templateUrl: './interfaz.component.html',
   styleUrls: ['./interfaz.component.css']
 })
-export class InterfazComponent {
+export class InterfazComponent implements OnInit{
 
   code: string = '';
   flights: any = {};
-  eliminado:any = {}
+  eliminado:any = []
 
   arreglo:IFlight[] = [
     {
@@ -112,6 +112,9 @@ export class InterfazComponent {
 constructor(private flight:ClienteService){
 
 }
+  ngOnInit(): void {
+    this.buscar()
+  }
 crear(body:any){
 
   this.flight.ingresarCliente(body).pipe(
@@ -125,10 +128,24 @@ crear(body:any){
     )
   ).subscribe()
 }
+
+buscar(){
+
+  this.flight.obtenerClientes().pipe(
+    tap(data=>{
+      this.eliminado = Object.values(data)
+    }),catchError(e =>{
+
+      throw e
+    }
+
+    )
+  ).subscribe()
+}
 deleteFlight(index: number, body:any) {
   this.arreglo.splice(index, 1); 
   console.log(body);
-  
+  this.buscar()
   this.crear(body)
 }
 // eliminar(){

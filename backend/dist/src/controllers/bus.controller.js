@@ -35,20 +35,16 @@ const crearBus = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
     }
 });
-// const obtenerBus = async (req: Request, res: Response) => {
-//     try {
-//         const { code} = req.body;
-//         const bus = await prisma.bus.findFirst({
-//             where: {
-//                 code: code,
-//                 deleted: false
-//             },
-//         });
-//         res.status(200).json(bus);
-//     } catch (e) {
-//         res.status(500).json({ 'error': e, 'message':"error al obtener el bus" });
-//     }
-// };
+const obtenerBus = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { code } = req.body;
+        const bus = yield server_1.prisma.flight.findMany({});
+        res.status(200).json(bus);
+    }
+    catch (e) {
+        res.status(500).json({ 'error': e, 'message': "error al obtener el bus" });
+    }
+});
 const eliminarBus = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id, reason } = req.body;
@@ -65,5 +61,6 @@ const eliminarBus = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 });
 exports.default = {
     crearBus,
+    obtenerBus,
     eliminarBus
 };

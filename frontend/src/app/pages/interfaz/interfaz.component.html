@@ -26,4 +26,35 @@
       </table>
     </div>
   </div>
+
+  <h1 class="mt-3">tabla de eliminados</h1>
+
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Number</th>
+            <th>Code</th>
+            <th>Capacity</th>
+            <th>From</th>
+            <th>To</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let flight of eliminado; let i = index">
+            <td>{{ flight.id }}</td>
+            <td>{{ flight.number }}</td>
+            <td>{{ flight.code }}</td>
+            <td>{{ flight.capacity }}</td>
+            <td>{{ flight.from }}</td>
+            <td>{{ flight.to }}</td>
+            <td><button class="btn btn-danger" (click)="deleteFlight(i, flight)" type="button">elimnar</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
+

@@ -16,8 +16,8 @@ export class ClienteService {
     return this.http.post<any>(`${url}crear/flight`,body);
   }
 
-  obtenerClientes(body:any):Observable<any>{
-    return this.http.get<any>(`${url}ver/bus`,body)
+  obtenerClientes():Observable<any>{
+    return this.http.get<any>(`${url}ver/flight`)
   }
 
 
