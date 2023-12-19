@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductoResponse } from '../interfaces/producto-response';
 import { url } from '../app.module';
-import { Producto } from '../interfaces/producto';
+import { Producto } from '../interfaces/IFlight';
 
 @Injectable({
   providedIn: 'root'
