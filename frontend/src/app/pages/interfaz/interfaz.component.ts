@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { catchError, tap } from 'rxjs';
 import { IFlight } from 'src/app/interfaces/IFlight';
+import { ClienteService } from 'src/app/services/cliente.service';
 
 
 
@@ -12,7 +13,7 @@ import { IFlight } from 'src/app/interfaces/IFlight';
 export class InterfazComponent {
 
   code: string = '';
-  bus: any = {};
+  flights: any = {};
   eliminado:any = {}
 
   arreglo:IFlight[] = [
@@ -108,22 +109,28 @@ export class InterfazComponent {
   },
 ]
 
-constructor(){
+constructor(private flight:ClienteService){
 
 }
-// buscar(){
+crear(body:any){
 
-//   this.buss.obtenerClientes(this.bus).pipe(
-//     tap(data=>{
-//       this.bus = data
-//     }),catchError(e =>{
+  this.flight.ingresarCliente(body).pipe(
+    tap(data=>{
+      this.flight = data
+    }),catchError(e =>{
 
-//       throw e
-//     }
+      throw e
+    }
 
-//     )
-//   ).subscribe()
-// }
+    )
+  ).subscribe()
+}
+deleteFlight(index: number, body:any) {
+  this.arreglo.splice(index, 1); 
+  console.log(body);
+  
+  this.crear(body)
+}
 // eliminar(){
 //   const id = parseInt(this.bus.id)
 //   this.bus.id = id

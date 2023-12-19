@@ -11,12 +11,11 @@ datasource db {
   // directUrl = env("DIRECT_URL")
 }
 
-model Bus {
-  id      Int     @id @default(autoincrement())
-  code    String
-  route   String
-  source  String
-  destiny String
-  deleted Boolean @default(false)
-  reason  String? 
+model Flight {
+  id       Int    @id @default(autoincrement())
+  code     String
+  number   Int
+  from     String
+  to       String
+  capacity Int
 }

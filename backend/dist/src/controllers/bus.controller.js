@@ -10,17 +10,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const server_1 = require("../../server");
+//estaesunejemplodepractica
 const crearBus = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { code, route, source, destiny, deleted, reason } = req.body;
-        const nuevoBus = yield server_1.prisma.bus.create({
+        const { code, number, to, from, capacity, } = req.body;
+        const nuevoBus = yield server_1.prisma.flight.create({
             data: {
                 code,
-                route,
-                source,
-                destiny,
-                deleted,
-                reason
+                number,
+                to,
+                from,
+                capacity,
             },
         });
         res.status(200).json({
@@ -35,37 +35,29 @@ const crearBus = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
     }
 });
-const obtenerBus = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const { code } = req.body;
-        const bus = yield server_1.prisma.bus.findFirst({
-            where: {
-                code: code,
-                deleted: false
-            },
-        });
-        res.status(200).json(bus);
-    }
-    catch (e) {
-        res.status(500).json({ 'error': e, 'message': "error al obtener el bus" });
-    }
-});
+// const obtenerBus = async (req: Request, res: Response) => {
+//     try {
+//         const { code} = req.body;
+//         const bus = await prisma.bus.findFirst({
+//             where: {
+//                 code: code,
+//                 deleted: false
+//             },
+//         });
+//         res.status(200).json(bus);
+//     } catch (e) {
+//         res.status(500).json({ 'error': e, 'message':"error al obtener el bus" });
+//     }
+// };
 const eliminarBus = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id, reason } = req.body;
-        const eliminarBus = yield server_1.prisma.bus.update({
+        const eliminarBus = yield server_1.prisma.flight.delete({
             where: {
-                id: Number(id),
+                id: id,
             },
-            data: {
-                deleted: true,
-                reason: reason
-            }
         });
-        res.status(200).json({
-            'data': eliminarBus,
-            'message': "bus eliminado con exito"
-        });
+        res.status(200).json(eliminarBus);
     }
     catch (e) {
         res.status(500).json({ 'error': e, 'message': "error al eliminar el cliente" });
@@ -73,6 +65,5 @@ const eliminarBus = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 });
 exports.default = {
     crearBus,
-    obtenerBus,
     eliminarBus
 };

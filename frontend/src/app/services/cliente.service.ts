@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { url } from '../app.module';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Cliente} from '../interfaces/cliente'
-import { ClienteResponse } from '../interfaces/clienteResponse';
+import { IFlight } from '../interfaces/IFlight';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,8 @@ export class ClienteService {
 
   constructor(private http: HttpClient) { }
 
-  ingresarCliente(body:any): Observable<ClienteResponse>{
-    return this.http.post<ClienteResponse>(`${url}crear/bus`,body);
+  ingresarCliente(body:any): Observable<any>{
+    return this.http.post<any>(`${url}crear/flight`,body);
   }
 
   obtenerClientes(body:any):Observable<any>{
@@ -23,7 +23,7 @@ export class ClienteService {
 
 
   eliminarCliente(body:any):Observable<any>{
-    return this.http.delete<any>(`${url}eliminar/bus`,body)
+    return this.http.delete<any>(`${url}eliminar/flight`,body)
   }
 
 }

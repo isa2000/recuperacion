@@ -3,10 +3,10 @@ import BusController from "../controllers/bus.controller";
 
 const router = express.Router();
 
-router.post("/crear/bus",BusController.crearBus);
-router.get("/ver/bus",BusController.obtenerBus);
+router.post("/crear/flight",BusController.crearBus);
+// router.get("/ver/bus",BusController.obtenerBus);
 // router.get("/ver/cliente/:id",BusController.obtenerCliente);
 // router.patch("/actualizar/cliente/:id",BusController.actualizarCliente);
-router.delete("/eliminar/bus",BusController.eliminarBus);
+router.delete("/eliminar/flight",BusController.eliminarBus);
 
 export default router;

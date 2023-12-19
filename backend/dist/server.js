@@ -28,7 +28,6 @@ function main() {
     return __awaiter(this, void 0, void 0, function* () {
         app.use(express_1.default.json());
         app.use("/api/v1/", bus_route_1.default);
-        // app.use('/', ServerViews);
         // Catch unregistered routes
         app.all("*", (req, res) => {
             res.status(404).json({ error: `Ruta ${req.originalUrl} no encontrada` });

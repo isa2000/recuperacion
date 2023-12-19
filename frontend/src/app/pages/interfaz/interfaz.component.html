@@ -13,14 +13,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let flight of arreglo">
+          <tr *ngFor="let flight of arreglo; let i = index">
             <td>{{ flight.id }}</td>
             <td>{{ flight.number }}</td>
             <td>{{ flight.code }}</td>
             <td>{{ flight.capacity }}</td>
             <td>{{ flight.from }}</td>
             <td>{{ flight.to }}</td>
-            <td><button class="btn btn-danger" type="button">elimnar</button></td>
+            <td><button class="btn btn-danger" (click)="deleteFlight(i, flight)" type="button">elimnar</button></td>
           </tr>
         </tbody>
       </table>

@@ -7,19 +7,18 @@ import { Request, Response } from "express";
 const crearBus = async (req: Request, res: Response) => {
     try {
         const { code,
-            route,
-            source,
-            destiny,
-            deleted,
-            reason } = req.body;
-        const nuevoBus = await prisma.bus.create({
+                number,
+                to,
+                from,
+                capacity, } = req.body;
+        const nuevoBus = await prisma.flight.create({
             data: {
                 code,
-                route,
-                source,
-                destiny,
-                deleted,
-                reason
+                number,
+                to,
+                from,
+                capacity,
+                
             },
         });
         res.status(200).json({
@@ -35,34 +34,30 @@ const crearBus = async (req: Request, res: Response) => {
 };
 
 
-const obtenerBus = async (req: Request, res: Response) => {
-    try {
-        const { code} = req.body;
-        const bus = await prisma.bus.findFirst({
-            where: {
-                code: code,
-                deleted: false
-            },
-        });
-        res.status(200).json(bus);
-    } catch (e) {
-        res.status(500).json({ 'error': e, 'message':"error al obtener el bus" });
-    }
-};
+// const obtenerBus = async (req: Request, res: Response) => {
+//     try {
+//         const { code} = req.body;
+//         const bus = await prisma.bus.findFirst({
+//             where: {
+//                 code: code,
+//                 deleted: false
+//             },
+//         });
+//         res.status(200).json(bus);
+//     } catch (e) {
+//         res.status(500).json({ 'error': e, 'message':"error al obtener el bus" });
+//     }
+// };
 
 
 
 const eliminarBus = async (req: Request, res: Response) => {
     try {
         const { id, reason } = req.body;
-        const eliminarBus = await prisma.bus.update({
+        const eliminarBus = await prisma.flight.delete({
             where: {
                 id: id,
             },
-            data: {
-                deleted: true,
-                reason: reason
-            }
         });
         res.status(200).json(eliminarBus);
     } catch (e) {
@@ -72,8 +67,6 @@ const eliminarBus = async (req: Request, res: Response) => {
 
 export default {
     crearBus,
-
-    obtenerBus,
 
     eliminarBus
 }
