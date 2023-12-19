@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE "Bus" ALTER COLUMN "reason" DROP NOT NULL;

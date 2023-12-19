@@ -17,7 +17,6 @@ async function main() {
   app.use(express.json());
 
   app.use("/api/v1/",BusRouter);
-  // app.use('/', ServerViews);
 
 
   // Catch unregistered routes

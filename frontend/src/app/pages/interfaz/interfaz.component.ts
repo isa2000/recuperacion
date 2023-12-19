@@ -38,7 +38,8 @@ eliminar(){
   this.buss.eliminarCliente(this.bus).pipe(
     tap(data =>{
 
-      this.eliminado = data.data
+      console.log(data);
+      
     }), 
     catchError(e=>{
 

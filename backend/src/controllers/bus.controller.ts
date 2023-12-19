@@ -54,17 +54,14 @@ const eliminarBus = async (req: Request, res: Response) => {
         const { id, reason } = req.body;
         const eliminarBus = await prisma.bus.update({
             where: {
-                id: Number(id),
+                id: id,
             },
             data: {
                 deleted: true,
                 reason: reason
             }
         });
-        res.status(200).json({
-            'data': eliminarBus,
-            'message': "bus eliminado con exito"
-        });
+        res.status(200).json(eliminarBus);
     } catch (e) {
         res.status(500).json({ 'error': e, 'message':"error al eliminar el cliente"});
     }
