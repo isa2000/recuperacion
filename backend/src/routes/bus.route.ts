@@ -7,6 +7,6 @@ router.post("/crear/flight",BusController.crearBus);
 router.get("/ver/flight",BusController.obtenerBus);
 // router.get("/ver/cliente/:id",BusController.obtenerCliente);
 // router.patch("/actualizar/cliente/:id",BusController.actualizarCliente);
-router.delete("/eliminar/flight",BusController.eliminarBus);
+router.delete("/eliminar/flight/:id",BusController.eliminarBus);
 
 export default router;

@@ -50,10 +50,10 @@ const obtenerBus = async (req: Request, res: Response) => {
 
 const eliminarBus = async (req: Request, res: Response) => {
     try {
-        const { id, reason } = req.body;
+        const { id, reason } = req.params;
         const eliminarBus = await prisma.flight.delete({
             where: {
-                id: id,
+                id: Number(id),
             },
         });
         res.status(200).json(eliminarBus);

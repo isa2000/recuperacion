@@ -22,8 +22,8 @@ export class ClienteService {
 
 
 
-  eliminarCliente(body:any):Observable<any>{
-    return this.http.delete<any>(`${url}eliminar/flight`,body)
+  eliminarCliente(id:any):Observable<any>{
+    return this.http.delete<any>(`${url}eliminar/flight/${id}`)
   }
 
 }

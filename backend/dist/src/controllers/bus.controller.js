@@ -47,10 +47,10 @@ const obtenerBus = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 });
 const eliminarBus = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { id, reason } = req.body;
+        const { id, reason } = req.params;
         const eliminarBus = yield server_1.prisma.flight.delete({
             where: {
-                id: id,
+                id: Number(id),
             },
         });
         res.status(200).json(eliminarBus);

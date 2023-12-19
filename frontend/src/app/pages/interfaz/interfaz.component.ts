@@ -145,25 +145,22 @@ buscar(){
 deleteFlight(index: number, body:any) {
   this.arreglo.splice(index, 1); 
   console.log(body);
-  this.buscar()
   this.crear(body)
+  this.buscar()
 }
-// eliminar(){
-//   const id = parseInt(this.bus.id)
-//   this.bus.id = id
-//   console.log(this.bus);
+eliminar(id:any, body:any){
   
-  
-//   this.buss.eliminarCliente(this.bus).pipe(
-//     tap(data =>{
+  this.flight.eliminarCliente(id).pipe(
+    tap(data =>{
 
-//       console.log(data);
+      this.arreglo.push(body)
+      this.buscar()
       
-//     }), 
-//     catchError(e=>{
-
-//       throw e
-//     })
-//   ).subscribe()
-// }
+    }), 
+    catchError(e=>{
+      
+      throw e
+    })
+  ).subscribe()
+}
 }
